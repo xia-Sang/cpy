@@ -197,7 +197,7 @@ class CodeGenerator:
             '!=': '=='
         }
         
-        if node.operator in op_map:
+        if (node.operator in op_map):
             instr = TACInstruction(opcode=op_map[node.operator], arg1=right, arg2=left, result=temp)
         else:
             instr = TACInstruction(opcode=node.operator, arg1=left, arg2=right, result=temp)
@@ -207,6 +207,35 @@ class CodeGenerator:
 
     # ============== UnaryOp ==============
     def visit_UnaryOp(self, node: UnaryOp) -> Optional[str]:
+        if node.operator in ['++', '--']:
+            # 获取操作数
+            var = self.visit(node.operand)
+            temp = self.new_temp()
+            
+            # 先执行自增/自减运算
+            if node.operator == '++':
+                self.code.add_instruction(TACInstruction(
+                    opcode='+',
+                    arg1=var,
+                    arg2='1',
+                    result=var
+                ))
+            else:  # --
+                self.code.add_instruction(TACInstruction(
+                    opcode='-',
+                    arg1=var,
+                    arg2='1',
+                    result=var
+                ))
+
+            # 然后将新值存入临时变量
+            self.code.add_instruction(TACInstruction(
+                opcode='assign',
+                arg1=var,
+                result=temp
+            ))
+            return temp
+
         operand = self.visit(node.operand)
         temp = self.new_temp()
         instr = TACInstruction(opcode=node.operator, arg1=operand, result=temp)
@@ -224,7 +253,7 @@ class CodeGenerator:
     # ============== Variable ==============
     def visit_Variable(self, node: Variable) -> Optional[str]:
         var_name = node.name
-        if var_name not in self.symbol_table:
+        if (var_name not in self.symbol_table):
             raise Exception(f"Undefined variable '{var_name}'")
         return var_name
 

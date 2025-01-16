@@ -11,7 +11,7 @@ from ast_nodes import *
 
 if __name__ == "__main__":
     try:
-        with open("code.cpy", "r", encoding="utf-8") as f:
+        with open("code.me", "r", encoding="utf-8") as f:
             sample_code = f.read()
     except FileNotFoundError:
         print("错误: 未找到 'code.pyc' 文件。请确保文件存在于当前目录。")
@@ -31,7 +31,6 @@ if __name__ == "__main__":
         ir_code = code_gen.generate(ast)
         print("\n中间代码:")
         print(ir_code)
-        
         run_tac_program(ir_code)
     except ParserError as e:
         print(e)

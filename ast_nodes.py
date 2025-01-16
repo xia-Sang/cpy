@@ -77,11 +77,11 @@ class BinaryOp(ASTNode):
     right: 'Expression'
 
 # 一元表达式
-@dataclass
 class UnaryOp(ASTNode):
-    operator: str
-    operand: 'Expression'
-    is_prefix: bool = True  # True 表示前缀，False 表示后缀
+    def __init__(self, operator: str, operand: "Expression", is_prefix: bool = False):
+        self.operator = operator
+        self.operand = operand
+        self.is_prefix = is_prefix
 
 # 字面量
 @dataclass

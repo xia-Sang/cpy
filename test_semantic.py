@@ -5,7 +5,7 @@ from semantic import SemanticAnalyzer, SemanticError
 from ast_nodes import Program
 
 def main():
-    sample_code = open('code.pyc', 'r', encoding="utf-8").read()
+    sample_code = open('code.me', 'r', encoding="utf-8").read()
 
     # 词法分析
     lexer = Lexer(sample_code)

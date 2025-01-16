@@ -1,0 +1,13 @@
+fn call_print_function(a:int)->int{
+    for(int i = 1; i <=a;i=i+1){
+        for (int j = 1; j <=i;j=j+1){
+            print("{}*{}={} ", i, j,i*j)
+        }
+        print()
+    }
+    return 1
+}
+fn main() -> int {
+    call_print_function(9)
+    return 2
+}

@@ -140,10 +140,8 @@ class SimpleVM:
                         self.frames[-1][result_var] = return_value
                 self.value_stack.clear()
                 self.value_stack.append(return_value)
-                return None
+                return 
             else:
-                # 主函数返回时，修改为返回 None 而非一个具体数字
-                # 主函数返回
                 return return_value
 
         # 算术与比较运算
@@ -299,17 +297,13 @@ class SimpleVM:
         return None
 
     def _lib_print(self, args):
-        print(*args, sep="\n")
-        # todo
-        """
-        if not args:
-            return
-        fmt_str = args[0]
-        formatted = fmt_str.format(*args[1:])  # 此处 \n 被识别为换行符
-        print(formatted, end="")
-        """
-        return
-        
+        if args:
+            format_string = args[0].replace("\\",'\n')
+            values = args[1:]
+            print(format_string.format(*values),end='')
+        else:
+            print()
+
 
     def _lib_input(self, args):
         prompt = args[0] if args else ""
