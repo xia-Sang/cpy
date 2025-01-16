@@ -1,9 +1,5 @@
-from ast_nodes import print_ast
-from command import process_file
+from cmd.command import  process_file
 import sys
-import parser
-from semantic import SemanticAnalyzer, SemanticError
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("用法: python main.py [-a|-g|-l] <源代码文件>")
@@ -41,16 +37,4 @@ if __name__ == "__main__":
 
     process_file(filename, args)
 
-    ast = parser.parse()
-    
-    # 添加语义分析
-    semantic_analyzer = SemanticAnalyzer()
-    try:
-        semantic_analyzer.analyze(ast)
-        print("语义分析通过")
-    except SemanticError as e:
-        print(e)
-        sys.exit(1)
-        
-    if args.a:
-        print_ast(ast)
+   

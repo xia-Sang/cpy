@@ -1,38 +1,6 @@
-from lexer import Lexer, TokenType, Token
 from typing import List, Optional, Union
-
-from ast_nodes import (
-    ASTNode,
-    ClassDecl,
-    IndexAccess,
-    ListLiteral,
-    MemberFunctionDecl,
-    MemberVarDecl,
-    Program,
-    ImportStatement,
-    FunctionDecl,
-    Parameter,
-    TupleLiteral,
-    VarDecl,
-    ArrayDecl,
-    CompoundStmt,
-    ReturnStmt,
-    ExpressionStmt,
-    Comment,
-    BinaryOp,
-    UnaryOp,
-    Literal,
-    Variable,
-    FunctionCall,
-    Assignment,
-    IfStmt,
-    ElifBranch,
-    ForStmt,
-    BreakStmt,
-    ContinueStmt,
-    ArrayAccess,
-    Expression,
-)
+from .ast_nodes import *
+from lexer.token import Token, TokenType
 
 class ParserError(Exception):
     def __init__(self, message, token):

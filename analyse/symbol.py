@@ -1,7 +1,7 @@
 # symbol.py
 
 from typing import Dict, List, Optional, Tuple
-from typ import Type
+from .typ import Type
 
 class Symbol:
     """符号表项"""

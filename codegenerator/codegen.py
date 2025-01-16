@@ -1,6 +1,7 @@
-from intermediate_code import TACInstruction, Label, IntermediateCode
-from ast_nodes import *
+from .intermediate_code import TACInstruction, Label, IntermediateCode
+from parser.ast_nodes import *
 from typing import Dict, Optional
+
 
 class LoopContext:
     """用于保存当前循环的 start_label (或 update_label) 和 end_label。"""

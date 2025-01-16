@@ -1,9 +1,8 @@
-import argparse
-from code_generator import CodeGenerator
+from codegenerator.codegen import CodeGenerator
 from lexer import Lexer
-from parser import Parser
-from ast_nodes import print_ast
-from simple_vm import run_tac_program
+from parser.parser import Parser
+from parser.print_ast import print_ast
+from vm.simple_vm import run_tac_program
 def process_file(filepath: str, args) -> None:
     """处理源代码文件"""
     try:

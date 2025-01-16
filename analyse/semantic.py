@@ -1,7 +1,6 @@
-from typ import Type, ListType, TupleType
-from symbol import Symbol, SymbolTable
-from ast_nodes import *
-import sys
+from .typ import Type, ListType, TupleType
+from .symbol import Symbol, SymbolTable
+from parser.ast_nodes import *
 
 class SemanticError(Exception):
     """语义错误异常"""
@@ -271,22 +270,6 @@ class SemanticAnalyzer:
         else:
             raise SemanticError(f"Unknown binary operator '{op}'.", node)
 
-    # def visit_UnaryOp(self, node: UnaryOp) -> Type:
-    #     operand_type = self.analyze(node.operand)
-    #     op = node.operator
-
-    #     if op == '!':
-    #         if operand_type.name == 'bool':
-    #             return Type('bool')
-    #         else:
-    #             raise SemanticError(f"Logical NOT operator '!' requires a boolean operand.", node)
-    #     elif op == '-':
-    #         if operand_type.name in {'int', 'float'}:
-    #             return operand_type
-    #         else:
-    #             raise SemanticError(f"Unary minus operator '-' requires a numeric operand.", node)
-    #     else:
-    #         raise SemanticError(f"Unknown unary operator '{op}'.", node)
     def visit_UnaryOp(self, node: UnaryOp) -> Type:
         operand_type = self.analyze(node.operand)
         op = node.operator

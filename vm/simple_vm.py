@@ -1,4 +1,4 @@
-from intermediate_code import TACInstruction, Label, IntermediateCode
+from codegenerator.intermediate_code import TACInstruction, Label, IntermediateCode
 from typing import Dict, List, Any, Optional
 
 class SimpleVM:
@@ -298,9 +298,13 @@ class SimpleVM:
 
     def _lib_print(self, args):
         if args:
-            format_string = args[0].replace("\\",'\n')
-            values = args[1:]
-            print(format_string.format(*values),end='')
+            format_string = args[0]
+            if isinstance(format_string,str):
+                format_string=format_string.replace("\\",'\n')
+                values = args[1:]
+                print(format_string.format(*values),end='')
+            else:
+                print(*args)
         else:
             print()
 
